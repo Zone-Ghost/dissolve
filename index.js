@@ -15,7 +15,8 @@ var Dissolve = module.exports = function Dissolve(options) {
   stream.Transform.call(this, options);
 
   this.jobs = [];
-  this.vars = Object.create(null);
+  // changed to pass values to Socket.io directly...
+  this.vars = {};
   this.vars_list = [];
 
   this._buffer = new BufferList();
@@ -29,7 +30,8 @@ Dissolve.prototype._job_down = function _job_down(job) {
 };
 
 Dissolve.prototype._job_up = function _job_up() {
-  this.vars.__proto__ = null;
+  // changed to pass values to Socket.io directly...
+  //this.vars.__proto__ = null;
   this.vars = this.vars_list.pop();
 };
 
